@@ -529,3 +529,45 @@ CREATE TABLE artisan_drafts (
 - [x] Web Push personalized transition notifications defined.
 - [x] Multi-day relative duration schema and dynamic budgeting specified.
 - [x] Trip-to-Trail contribution loop and WhatsApp voice onboarding preserved.
+
+---
+
+# 12. Open Design Decisions & Investigation Log
+
+The following decisions and operational gaps are explicitly marked as **OPEN** pending future user alignment:
+
+### 12.1 Artisan Workshop Capacity Policy (`OPEN`)
+- **Context**: Miniature painters and potters have small physical workspaces (2–4 seats).
+- **Options under consideration**:
+  1. *1-Tap WhatsApp Ping (Recommended)*: 1-tap button in the PWA sending a pre-filled WhatsApp note to the artisan (*"Hi Mohanlal ji, Raghav here via TrailWeave. Arriving around 3:30 PM for a 45-min workshop. Are 2 spots open?"*).
+  2. *Strict Walk-In*: Assume drop-in availability during stated shop hours with no prior message.
+- **Status**: `OPEN` (`needs-info`).
+
+### 12.2 In-Transit Delays & Missed Check-Ins (`OPEN`)
+- **Context**: Traveler stops at an unplanned tea stall or jewelry shop for 40 minutes between stops, causing the timeline and downstream temple closing hours to drift out of sync.
+- **Options under consideration**:
+  1. *Proactive Replan Prompt*: When transit exceeds ETA + 25 minutes with no check-in, prompt traveler with 1-tap options to push remaining stops or re-optimize.
+  2. *Passive Delay*: Do not interrupt; retain existing planned stop times until manual edit or checkout.
+- **Status**: `OPEN` (`needs-info`).
+
+### 12.3 Community Trail Publishing Moderation (`OPEN`)
+- **Context**: Tension between instant gratification for the contributing traveler vs. quality control/spam prevention.
+- **Options under consideration**:
+  1. *Instant Publish with Community Badge*: Trail appears immediately in the Curated feed with an "Experienced by Community" tag, subject to post-publish Admin moderation.
+  2. *Mandatory Admin Approval First*: Trail is queued in Admin portal under `pending_confirmation` and only becomes visible after explicit admin sign-off.
+- **Status**: `OPEN` (`needs-info`).
+
+### 12.4 Old City Vehicular & Micro-Transit Zones (`OPEN`)
+- **Context**: Narrow streets and daylight vehicular barricades around Jagdish Chowk, Gangaur Ghat, and Chandpole prohibit 4-wheelers.
+- **Proposed Solution**: Enforce pedestrian and auto-rickshaw drop-gate routing for Old City coordinates.
+- **Status**: `OPEN` (`needs-info`).
+
+### 12.5 Multi-Day Overnight Lifecycle Transitions (`OPEN`)
+- **Context**: Clarifying trip status between Day 1 evening and Day 2 morning.
+- **Proposed Solution**: Introduce `DAY_COMPLETED` state with a morning "Start Day 2" trigger at hotel start time.
+- **Status**: `OPEN` (`needs-info`).
+
+### 12.6 Offline Resilience in Stone Havelis (`OPEN`)
+- **Context**: Thick stone masonry in historic buildings frequently causes 4G drops.
+- **Proposed Solution**: Service Worker caching of active day itinerary, geoJSON coordinates, and local queueing for manual check-ins in `IndexedDB`.
+- **Status**: `OPEN` (`needs-info`).
